@@ -1,10 +1,11 @@
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.antlr.v4.runtime.CharStreams.fromFileName;
 import static org.antlr.v4.runtime.CharStreams.fromPath;
@@ -28,16 +29,26 @@ public class Main {
 
 
 //        CharStream g4 = fromFileName("D:\\git-repos\\AUT\\src\\main\\java\\Arithmetic.g4");
-        ArithmeticLexer lexer = new ArithmeticLexer(CharStreams.fromString("38*3\r\n"));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
+//        File file = new File("test.txt");
+//        String result = Files.readString(file);
 
-        ParseTree tree = parser.prog();
-        ParseTreeWalker walker = new ParseTreeWalker();
-        AntlrArithmeticListener listener = new AntlrArithmeticListener();
-        MyListener extractor = new MyListener();
+        String filename="src\\main\\java\\Input\\test.txt";
+        Path pathToFile = Paths.get(filename);
+        String content = Files.readString(pathToFile, StandardCharsets.US_ASCII);
+        String[] arrOfStr = content.split("\r\n");
+        for (String a : arrOfStr) {
+            System.out.print(a + " = ");
+            ArithmeticLexer lexer = new ArithmeticLexer(CharStreams.fromString(a));
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
 
-        ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
+            ParseTree tree = parser.prog();
+            ParseTreeWalker walker = new ParseTreeWalker();
+            AntlrArithmeticListener listener = new AntlrArithmeticListener();
+            MyListener extractor = new MyListener();
+
+            ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
 //        walker.walk(listener, tree);
+        }
     }
 }

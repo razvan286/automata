@@ -13,7 +13,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     public void exitProg(ArithmeticParser.ProgContext ctx)
     {
         int result = stack.pop();
-        System.out.println("Result: " + result);
+        System.out.println(result);
     }
     @Override
     public void exitMult(ArithmeticParser.MultContext ctx)
