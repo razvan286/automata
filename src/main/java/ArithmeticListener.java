@@ -1,4 +1,4 @@
-// Generated from .\Arithmetic.g4 by ANTLR 4.9.2
+// Generated from .\Arithmetic.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -17,29 +17,41 @@ public interface ArithmeticListener extends ParseTreeListener {
 	 */
 	void exitProg(ArithmeticParser.ProgContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code Brackets}
+	 * Enter a parse tree produced by the {@code Add}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterBrackets(ArithmeticParser.BracketsContext ctx);
+	void enterAdd(ArithmeticParser.AddContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code Brackets}
+	 * Exit a parse tree produced by the {@code Add}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitBrackets(ArithmeticParser.BracketsContext ctx);
+	void exitAdd(ArithmeticParser.AddContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code AddSubtr}
+	 * Enter a parse tree produced by the {@code Parenthesis}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterAddSubtr(ArithmeticParser.AddSubtrContext ctx);
+	void enterParenthesis(ArithmeticParser.ParenthesisContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code AddSubtr}
+	 * Exit a parse tree produced by the {@code Parenthesis}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAddSubtr(ArithmeticParser.AddSubtrContext ctx);
+	void exitParenthesis(ArithmeticParser.ParenthesisContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Mult}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMult(ArithmeticParser.MultContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Mult}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMult(ArithmeticParser.MultContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Int}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
@@ -52,16 +64,4 @@ public interface ArithmeticListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInt(ArithmeticParser.IntContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code MultAdd}
-	 * labeled alternative in {@link ArithmeticParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterMultAdd(ArithmeticParser.MultAddContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code MultAdd}
-	 * labeled alternative in {@link ArithmeticParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitMultAdd(ArithmeticParser.MultAddContext ctx);
 }

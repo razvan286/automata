@@ -1,4 +1,4 @@
-// Generated from .\Arithmetic.g4 by ANTLR 4.9.2
+// Generated from .\Arithmetic.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ArithmeticParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -160,35 +160,52 @@ public class ArithmeticParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class BracketsContext extends ExprContext {
-		public ExprContext expr() {
-			return getRuleContext(ExprContext.class,0);
-		}
-		public BracketsContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterBrackets(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitBrackets(this);
-		}
-	}
-	public static class AddSubtrContext extends ExprContext {
+	public static class AddContext extends ExprContext {
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
 		}
 		public ExprContext expr(int i) {
 			return getRuleContext(ExprContext.class,i);
 		}
-		public AddSubtrContext(ExprContext ctx) { copyFrom(ctx); }
+		public AddContext(ExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterAddSubtr(this);
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterAdd(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitAddSubtr(this);
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitAdd(this);
+		}
+	}
+	public static class ParenthesisContext extends ExprContext {
+		public ExprContext expr() {
+			return getRuleContext(ExprContext.class,0);
+		}
+		public ParenthesisContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterParenthesis(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitParenthesis(this);
+		}
+	}
+	public static class MultContext extends ExprContext {
+		public List<ExprContext> expr() {
+			return getRuleContexts(ExprContext.class);
+		}
+		public ExprContext expr(int i) {
+			return getRuleContext(ExprContext.class,i);
+		}
+		public MultContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterMult(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitMult(this);
 		}
 	}
 	public static class IntContext extends ExprContext {
@@ -201,23 +218,6 @@ public class ArithmeticParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitInt(this);
-		}
-	}
-	public static class MultAddContext extends ExprContext {
-		public List<ExprContext> expr() {
-			return getRuleContexts(ExprContext.class);
-		}
-		public ExprContext expr(int i) {
-			return getRuleContext(ExprContext.class,i);
-		}
-		public MultAddContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterMultAdd(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitMultAdd(this);
 		}
 	}
 
@@ -252,7 +252,7 @@ public class ArithmeticParser extends Parser {
 				break;
 			case T__4:
 				{
-				_localctx = new BracketsContext(_localctx);
+				_localctx = new ParenthesisContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(14);
@@ -280,7 +280,7 @@ public class ArithmeticParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 					case 1:
 						{
-						_localctx = new MultAddContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new MultContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(20);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
@@ -300,7 +300,7 @@ public class ArithmeticParser extends Parser {
 						break;
 					case 2:
 						{
-						_localctx = new AddSubtrContext(new ExprContext(_parentctx, _parentState));
+						_localctx = new AddContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
 						setState(23);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");

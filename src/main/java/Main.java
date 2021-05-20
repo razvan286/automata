@@ -27,15 +27,17 @@ public class Main {
             }*/
 
 
-        CharStream g4 = fromFileName("D:\\git-repos\\AUT\\src\\main\\java\\Arithmetic.g4");
-        ArithmeticLexer lexer = new ArithmeticLexer(g4);
+//        CharStream g4 = fromFileName("D:\\git-repos\\AUT\\src\\main\\java\\Arithmetic.g4");
+        ArithmeticLexer lexer = new ArithmeticLexer(CharStreams.fromString("38*3\r\n"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
 
         ParseTree tree = parser.prog();
+        ParseTreeWalker walker = new ParseTreeWalker();
+        AntlrArithmeticListener listener = new AntlrArithmeticListener();
         MyListener extractor = new MyListener();
 
-        ParseTreeWalker.DEFAULT.walk(extractor, tree);  //initiate walk of tree with listener in use of default walker
-
+        ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
+//        walker.walk(listener, tree);
     }
 }

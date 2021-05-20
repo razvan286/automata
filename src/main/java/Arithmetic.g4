@@ -1,9 +1,9 @@
 grammar Arithmetic;
 prog:	(expr NEWLINE)* ;
-expr:	expr ('*'|'/') expr # MultAdd
-    |	expr ('+'|'-') expr # AddSubtr
-    |	INT # Int
-    |	'(' expr ')' # Brackets
+expr:	expr ('*'|'/') expr # Mult
+    |	expr ('+'|'-') expr # Add
+    |	INT                 # Int
+    |	'(' expr ')'        # Parenthesis
     ;
 NEWLINE : [\r\n]+ ;
 INT     : [0-9]+ ;

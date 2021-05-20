@@ -1,4 +1,4 @@
-// Generated from .\Arithmetic.g4 by ANTLR 4.9.2
+// Generated from .\Arithmetic.g4 by ANTLR 4.9
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -27,25 +27,37 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBrackets(ArithmeticParser.BracketsContext ctx) { }
+	@Override public void enterAdd(ArithmeticParser.AddContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBrackets(ArithmeticParser.BracketsContext ctx) { }
+	@Override public void exitAdd(ArithmeticParser.AddContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAddSubtr(ArithmeticParser.AddSubtrContext ctx) { }
+	@Override public void enterParenthesis(ArithmeticParser.ParenthesisContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAddSubtr(ArithmeticParser.AddSubtrContext ctx) { }
+	@Override public void exitParenthesis(ArithmeticParser.ParenthesisContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMult(ArithmeticParser.MultContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMult(ArithmeticParser.MultContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -58,18 +70,6 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInt(ArithmeticParser.IntContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterMultAdd(ArithmeticParser.MultAddContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMultAdd(ArithmeticParser.MultAddContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
