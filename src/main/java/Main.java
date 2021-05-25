@@ -32,23 +32,25 @@ public class Main {
 //        File file = new File("test.txt");
 //        String result = Files.readString(file);
 
-        String filename="src\\main\\java\\Input\\test.txt";
+        String filename = "src\\main\\java\\Input\\test.txt";
         Path pathToFile = Paths.get(filename);
         String content = Files.readString(pathToFile, StandardCharsets.US_ASCII);
-        String[] arrOfStr = content.split("\r\n");
-        for (String a : arrOfStr) {
-            System.out.print(a + " = ");
-            ArithmeticLexer lexer = new ArithmeticLexer(CharStreams.fromString(a));
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
+//        String[] arrOfStr = content.split("\r\n");
+//        for (String a : arrOfStr) {
+//            System.out.print(a + " = ");
+        ArithmeticLexer lexer = new ArithmeticLexer(CharStreams.fromString(content));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
 
-            ParseTree tree = parser.prog();
-            ParseTreeWalker walker = new ParseTreeWalker();
-            AntlrArithmeticListener listener = new AntlrArithmeticListener();
-            MyListener extractor = new MyListener();
+        ParseTree tree = parser.prog();
+        ParseTreeWalker walker = new ParseTreeWalker();
+        AntlrArithmeticListener listener = new AntlrArithmeticListener();
+        MyListener extractor = new MyListener();
 
-            ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
+        ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
 //        walker.walk(listener, tree);
-        }
+
+
+//    }
     }
 }
