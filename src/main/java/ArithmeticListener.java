@@ -1,4 +1,4 @@
-// Generated from .\Arithmetic.g4 by ANTLR 4.9
+// Generated from Arithmetic.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -28,18 +28,6 @@ public interface ArithmeticListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPrint(ArithmeticParser.PrintContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code PrintVar}
-	 * labeled alternative in {@link ArithmeticParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrintVar(ArithmeticParser.PrintVarContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code PrintVar}
-	 * labeled alternative in {@link ArithmeticParser#stat}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrintVar(ArithmeticParser.PrintVarContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Var}
 	 * labeled alternative in {@link ArithmeticParser#stat}.

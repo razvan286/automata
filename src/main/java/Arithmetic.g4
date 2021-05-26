@@ -1,9 +1,9 @@
 grammar Arithmetic;
 prog:	stat+;
-stat:   expr NEWLINE               # Print
-    |   ID NEWLINE                 # PrintVar 
-    |   ID '=' expr NEWLINE        # Var
-    |   NEWLINE                    # NL
+
+stat:   expr               # Print
+    |   ID '=' expr        # Var
+    |   NEWLINE            # NL
     ;
 
 expr:	expr '^' expr       # Pow
@@ -15,8 +15,10 @@ expr:	expr '^' expr       # Pow
     |	'(' expr ')'        # Parenthesis
     ;
 
-ID : [a-zA-Z]+ ; 
-NEWLINE : [\t\r\n]+;
+ID : [a-zA-Z]+ ;
+WS : [ \t]+ -> skip;
+//NEWLINE : [\t\r\n]+;
+NEWLINE :'\r'? '\n' ;
 INT     : [0-9]+;
 
 

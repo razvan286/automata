@@ -1,2 +1,6 @@
-myNumber=5
-myNumber
+a=5
+b=5
+a*b
+a
+(a)
+(a*b)^b+a^2

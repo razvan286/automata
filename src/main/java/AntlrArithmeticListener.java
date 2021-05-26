@@ -6,17 +6,12 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     private Stack<Integer> stack = new Stack <Integer>();
     Map<String, Integer> memory = new HashMap<String, Integer>();
 
-    @Override public void exitPrintVar(ArithmeticParser.PrintVarContext ctx)
-    {
-        int number = memory.get(ctx.ID().getText());
-        System.out.println(number);
-    }
-
     @Override public void exitID(ArithmeticParser.IDContext ctx)
     {
         int number = memory.get(ctx.ID().getText());
         stack.push(number);
     }
+
 
     @Override public void exitVar(ArithmeticParser.VarContext ctx)
     {
