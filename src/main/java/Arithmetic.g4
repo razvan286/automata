@@ -2,7 +2,7 @@ grammar Arithmetic;
 prog:	stat+;
 
 stat:   expr               # Print
-    |   ID '=' expr        # Var
+    |   TYPE ID '=' expr   # Var
     |   NEWLINE            # NL
     ;
 
@@ -12,13 +12,16 @@ expr:	expr '^' expr       # Pow
     |   expr '!'            # Fact
     |	INT                 # Int
     |   ID                  # ID
+    |   STRING              # String
     |	'(' expr ')'        # Parenthesis
     ;
 
+STRING : '"' .*? '"' ;
+TYPE : 'int' | 'bool' | 'string' ;
 ID : [a-zA-Z]+ ;
-WS : [ \t]+ -> skip;
+NEWLINE : [ \t\r\n]+ -> skip;
 //NEWLINE : [\t\r\n]+;
-NEWLINE :'\r'? '\n' ;
+//NEWLINE :'\r'? '\n' ;
 INT     : [0-9]+;
 
 

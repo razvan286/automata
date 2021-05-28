@@ -113,6 +113,18 @@ public interface ArithmeticListener extends ParseTreeListener {
 	 */
 	void exitID(ArithmeticParser.IDContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code String}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(ArithmeticParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code String}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(ArithmeticParser.StringContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Fact}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree

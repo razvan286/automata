@@ -17,7 +17,7 @@ public class ArithmeticParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		ID=10, WS=11, NEWLINE=12, INT=13;
+		STRING=10, TYPE=11, ID=12, NEWLINE=13, INT=14;
 	public static final int
 		RULE_prog = 0, RULE_stat = 1, RULE_expr = 2;
 	private static String[] makeRuleNames() {
@@ -35,8 +35,8 @@ public class ArithmeticParser extends Parser {
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, null, null, null, null, null, null, null, null, null, "ID", "WS", 
-			"NEWLINE", "INT"
+			null, null, null, null, null, null, null, null, null, null, "STRING", 
+			"TYPE", "ID", "NEWLINE", "INT"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -131,7 +131,7 @@ public class ArithmeticParser extends Parser {
 				setState(9); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << ID) | (1L << NEWLINE) | (1L << INT))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__7) | (1L << STRING) | (1L << TYPE) | (1L << ID) | (1L << NEWLINE) | (1L << INT))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -171,6 +171,7 @@ public class ArithmeticParser extends Parser {
 		}
 	}
 	public static class VarContext extends StatContext {
+		public TerminalNode TYPE() { return getToken(ArithmeticParser.TYPE, 0); }
 		public TerminalNode ID() { return getToken(ArithmeticParser.ID, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -202,10 +203,13 @@ public class ArithmeticParser extends Parser {
 		StatContext _localctx = new StatContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_stat);
 		try {
-			setState(16);
+			setState(17);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case T__7:
+			case STRING:
+			case ID:
+			case INT:
 				_localctx = new PrintContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
@@ -213,26 +217,30 @@ public class ArithmeticParser extends Parser {
 				expr(0);
 				}
 				break;
-			case 2:
+			case TYPE:
 				_localctx = new VarContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(12);
-				match(ID);
+				match(TYPE);
 				setState(13);
-				match(T__0);
+				match(ID);
 				setState(14);
+				match(T__0);
+				setState(15);
 				expr(0);
 				}
 				break;
-			case 3:
+			case NEWLINE:
 				_localctx = new NLContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(15);
+				setState(16);
 				match(NEWLINE);
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -334,6 +342,18 @@ public class ArithmeticParser extends Parser {
 			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitID(this);
 		}
 	}
+	public static class StringContext extends ExprContext {
+		public TerminalNode STRING() { return getToken(ArithmeticParser.STRING, 0); }
+		public StringContext(ExprContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).enterString(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitString(this);
+		}
+	}
 	public static class FactContext extends ExprContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
@@ -377,7 +397,7 @@ public class ArithmeticParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(25);
+			setState(27);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
@@ -386,7 +406,7 @@ public class ArithmeticParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(19);
+				setState(20);
 				match(INT);
 				}
 				break;
@@ -395,8 +415,17 @@ public class ArithmeticParser extends Parser {
 				_localctx = new IDContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(20);
+				setState(21);
 				match(ID);
+				}
+				break;
+			case STRING:
+				{
+				_localctx = new StringContext(_localctx);
+				_ctx = _localctx;
+				_prevctx = _localctx;
+				setState(22);
+				match(STRING);
 				}
 				break;
 			case T__7:
@@ -404,11 +433,11 @@ public class ArithmeticParser extends Parser {
 				_localctx = new ParenthesisContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(21);
-				match(T__7);
-				setState(22);
-				expr(0);
 				setState(23);
+				match(T__7);
+				setState(24);
+				expr(0);
+				setState(25);
 				match(T__8);
 				}
 				break;
@@ -416,7 +445,7 @@ public class ArithmeticParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(40);
+			setState(42);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
@@ -424,28 +453,28 @@ public class ArithmeticParser extends Parser {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(38);
+					setState(40);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
 						_localctx = new PowContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(27);
-						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(28);
-						match(T__1);
 						setState(29);
-						expr(8);
+						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
+						setState(30);
+						match(T__1);
+						setState(31);
+						expr(9);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new MultContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(30);
-						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(31);
+						setState(32);
+						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
+						setState(33);
 						_la = _input.LA(1);
 						if ( !(_la==T__2 || _la==T__3) ) {
 						_errHandler.recoverInline(this);
@@ -455,17 +484,17 @@ public class ArithmeticParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(32);
-						expr(7);
+						setState(34);
+						expr(8);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new AddContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(33);
-						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(34);
+						setState(35);
+						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
+						setState(36);
 						_la = _input.LA(1);
 						if ( !(_la==T__4 || _la==T__5) ) {
 						_errHandler.recoverInline(this);
@@ -475,24 +504,24 @@ public class ArithmeticParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(35);
-						expr(6);
+						setState(37);
+						expr(7);
 						}
 						break;
 					case 4:
 						{
 						_localctx = new FactContext(new ExprContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(36);
-						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
-						setState(37);
+						setState(38);
+						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
+						setState(39);
 						match(T__6);
 						}
 						break;
 					}
 					} 
 				}
-				setState(42);
+				setState(44);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
 			}
@@ -519,32 +548,32 @@ public class ArithmeticParser extends Parser {
 	private boolean expr_sempred(ExprContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 0:
-			return precpred(_ctx, 7);
+			return precpred(_ctx, 8);
 		case 1:
-			return precpred(_ctx, 6);
+			return precpred(_ctx, 7);
 		case 2:
-			return precpred(_ctx, 5);
+			return precpred(_ctx, 6);
 		case 3:
-			return precpred(_ctx, 4);
+			return precpred(_ctx, 5);
 		}
 		return true;
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17.\4\2\t\2\4\3\t"+
-		"\3\4\4\t\4\3\2\6\2\n\n\2\r\2\16\2\13\3\3\3\3\3\3\3\3\3\3\5\3\23\n\3\3"+
-		"\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\34\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\7\4)\n\4\f\4\16\4,\13\4\3\4\2\3\6\5\2\4\6\2\4\3\2\5\6\3\2"+
-		"\7\b\2\63\2\t\3\2\2\2\4\22\3\2\2\2\6\33\3\2\2\2\b\n\5\4\3\2\t\b\3\2\2"+
-		"\2\n\13\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\23\5\6\4\2\16"+
-		"\17\7\f\2\2\17\20\7\3\2\2\20\23\5\6\4\2\21\23\7\16\2\2\22\r\3\2\2\2\22"+
-		"\16\3\2\2\2\22\21\3\2\2\2\23\5\3\2\2\2\24\25\b\4\1\2\25\34\7\17\2\2\26"+
-		"\34\7\f\2\2\27\30\7\n\2\2\30\31\5\6\4\2\31\32\7\13\2\2\32\34\3\2\2\2\33"+
-		"\24\3\2\2\2\33\26\3\2\2\2\33\27\3\2\2\2\34*\3\2\2\2\35\36\f\t\2\2\36\37"+
-		"\7\4\2\2\37)\5\6\4\n !\f\b\2\2!\"\t\2\2\2\")\5\6\4\t#$\f\7\2\2$%\t\3\2"+
-		"\2%)\5\6\4\b&\'\f\6\2\2\')\7\t\2\2(\35\3\2\2\2( \3\2\2\2(#\3\2\2\2(&\3"+
-		"\2\2\2),\3\2\2\2*(\3\2\2\2*+\3\2\2\2+\7\3\2\2\2,*\3\2\2\2\7\13\22\33("+
-		"*";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20\60\4\2\t\2\4\3"+
+		"\t\3\4\4\t\4\3\2\6\2\n\n\2\r\2\16\2\13\3\3\3\3\3\3\3\3\3\3\3\3\5\3\24"+
+		"\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4\36\n\4\3\4\3\4\3\4\3\4\3\4\3"+
+		"\4\3\4\3\4\3\4\3\4\3\4\7\4+\n\4\f\4\16\4.\13\4\3\4\2\3\6\5\2\4\6\2\4\3"+
+		"\2\5\6\3\2\7\b\2\66\2\t\3\2\2\2\4\23\3\2\2\2\6\35\3\2\2\2\b\n\5\4\3\2"+
+		"\t\b\3\2\2\2\n\13\3\2\2\2\13\t\3\2\2\2\13\f\3\2\2\2\f\3\3\2\2\2\r\24\5"+
+		"\6\4\2\16\17\7\r\2\2\17\20\7\16\2\2\20\21\7\3\2\2\21\24\5\6\4\2\22\24"+
+		"\7\17\2\2\23\r\3\2\2\2\23\16\3\2\2\2\23\22\3\2\2\2\24\5\3\2\2\2\25\26"+
+		"\b\4\1\2\26\36\7\20\2\2\27\36\7\16\2\2\30\36\7\f\2\2\31\32\7\n\2\2\32"+
+		"\33\5\6\4\2\33\34\7\13\2\2\34\36\3\2\2\2\35\25\3\2\2\2\35\27\3\2\2\2\35"+
+		"\30\3\2\2\2\35\31\3\2\2\2\36,\3\2\2\2\37 \f\n\2\2 !\7\4\2\2!+\5\6\4\13"+
+		"\"#\f\t\2\2#$\t\2\2\2$+\5\6\4\n%&\f\b\2\2&\'\t\3\2\2\'+\5\6\4\t()\f\7"+
+		"\2\2)+\7\t\2\2*\37\3\2\2\2*\"\3\2\2\2*%\3\2\2\2*(\3\2\2\2+.\3\2\2\2,*"+
+		"\3\2\2\2,-\3\2\2\2-\7\3\2\2\2.,\3\2\2\2\7\13\23\35*,";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -7,10 +7,11 @@ T__5=6
 T__6=7
 T__7=8
 T__8=9
-ID=10
-WS=11
-NEWLINE=12
-INT=13
+STRING=10
+TYPE=11
+ID=12
+NEWLINE=13
+INT=14
 '='=1
 '^'=2
 '*'=3
