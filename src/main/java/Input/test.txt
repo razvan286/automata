@@ -2,6 +2,7 @@ int a=2
 int d=5
 a*d+a^d
 string b="aici"
+string k="not"
 bool c=false
 a
 b

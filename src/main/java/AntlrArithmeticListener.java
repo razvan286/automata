@@ -89,7 +89,6 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
             result = lV.getVarInt() - rV.getVarInt();
         Variable res = new Variable();
         res.setVarInt(result);
-
         stackVar.push(res);
     }
 
