@@ -1,6 +1,6 @@
 public class Variable {
     private String varString;
-    public Integer varInt;
+    private Integer varInt;
     private Boolean varBool;
 
     public void setVarBool(Boolean varBool) {
@@ -25,5 +25,15 @@ public class Variable {
 
     public String getVarString() {
         return varString;
+    }
+    public String printCon(){
+        if(this.varString != null){
+            return this.getVarString();
+        }else{
+            if(this.varBool != null){
+                return this.getVarBool().toString();
+            }
+        }
+        return this.getVarInt().toString();
     }
 }

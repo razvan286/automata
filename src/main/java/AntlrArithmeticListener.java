@@ -4,51 +4,39 @@ import java.util.Map;
 import java.util.Stack;
 
 public class AntlrArithmeticListener extends ArithmeticBaseListener{
-    private Stack<Integer> stack = new Stack <Integer>();
-    Map<String, Integer> memory = new HashMap<String, Integer>();
-
     private Stack<Variable> stackVar = new Stack<>();
     private Map<String, Variable> memoryVar = new HashMap<>();
 
     @Override public void exitID(ArithmeticParser.IDContext ctx)
     {
-        //int number = memory.get(ctx.ID().getText());
         Variable value = memoryVar.get(ctx.ID().getText());
         stackVar.push(value);
-        //stack.push(number);
     }
     @Override public void exitString(ArithmeticParser.StringContext ctx)
     {
-        Variable value = memoryVar.get(ctx.STRING().getText());
-        stackVar.push(value);
+        Variable iV = new Variable();
+        iV.setVarString(ctx.STRING().getText());
+        stackVar.push(iV);
+    }
+    @Override public void exitBoolean(ArithmeticParser.BooleanContext ctx)
+    {
+        Variable iV = new Variable();
+        iV.setVarBool(Boolean.parseBoolean(ctx.BOOL().getText()));
+        stackVar.push(iV);
     }
 
 
     @Override public void exitVar(ArithmeticParser.VarContext ctx)
     {
         String id = ctx.ID().getText(); // id is left-hand side of '='
-        //int value = stack.pop(); // compute value of expression on right
-        Variable value = stackVar.pop();
-        //memory.put(id, value); // store it in our memory
-        memoryVar.put(id, value);
+        Variable value = stackVar.pop();  // compute value of expression on right
+        memoryVar.put(id, value);  // store it in our memory
     }
 
     @Override public void exitPrint(ArithmeticParser.PrintContext ctx)
     {
         Variable res = stackVar.pop();
-        //Field field = Variable.class.getField("varInt");
-        if (res.getVarInt() instanceof Integer){
-            System.out.println(res.getVarInt());
-        }
-        else{
-            if (res.getVarString() instanceof String){
-                System.out.println(res.getVarString());
-            }
-        }
-
-        //int result = stack.pop();
-        //System.out.println(result);
-
+        System.out.println(res.printCon());
     }
 
     @Override
@@ -57,12 +45,8 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
         int result = (int) Math.pow(lV.getVarInt(), rV.getVarInt());
-        //int r = stack.pop();
-        //int l = stack.pop();
-        //int result = (int) Math.pow(l, r);
         Variable res = new Variable();
         res.setVarInt(result);
-        //stack.push(result);
         stackVar.push(res);
     }
 
@@ -71,8 +55,6 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     {
         Variable iV = new Variable();
         iV.setVarInt(Integer.parseInt(ctx.INT().getText()));
-        //int i = Integer.parseInt(ctx.INT().getText());
-        //stack.push(iV);
         stackVar.push(iV);
     }
 
@@ -81,23 +63,13 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     {
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
-
-        //int r = stack.pop();
-        //int l = stack.pop();
         String op = ctx.getChild(1).getText();
         int result;
-        /*
-        if (op.equals("*"))
-            result = l * r;
-        else
-            result = l / r;
-        */
-
         if (op.equals("*"))
             result = lV.getVarInt() * rV.getVarInt();
         else
             result = lV.getVarInt() / rV.getVarInt();
-        //stack.push(result);
+
         Variable res = new Variable();
         res.setVarInt(result);
         stackVar.push(res);
@@ -109,22 +81,15 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
 
-        //int r = stack.pop();
-        //int l = stack.pop();
-
         String op = ctx.getChild(1).getText();
         int result;
-        /*if (op.equals("+"))
-            result = l + r;
-        else
-            result = l - r;*/
         if (op.equals("+"))
             result = lV.getVarInt() + rV.getVarInt();
         else
             result = lV.getVarInt() - rV.getVarInt();
         Variable res = new Variable();
         res.setVarInt(result);
-        //stack.push(result);
+
         stackVar.push(res);
     }
 
@@ -132,12 +97,10 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     public void exitFact(ArithmeticParser.FactContext ctx)
     {
         Variable numberV = stackVar.pop();
-        //int number = stack.pop();
-        //int result = fact(number);
+
         int result = fact(numberV.getVarInt());
         Variable res = new Variable();
         res.setVarInt(result);
-        //stack.push(result);
         stackVar.push(res);
     }
 

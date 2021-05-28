@@ -111,6 +111,18 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterString(ArithmeticParser.StringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitString(ArithmeticParser.StringContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterID(ArithmeticParser.IDContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -123,13 +135,13 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString(ArithmeticParser.StringContext ctx) { }
+	@Override public void enterBoolean(ArithmeticParser.BooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString(ArithmeticParser.StringContext ctx) { }
+	@Override public void exitBoolean(ArithmeticParser.BooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -11,17 +11,17 @@ expr:	expr '^' expr       # Pow
     |	expr ('+'|'-') expr # Add
     |   expr '!'            # Fact
     |	INT                 # Int
-    |   ID                  # ID
     |   STRING              # String
+    |   BOOL                # Boolean
+    |   ID                  # ID
     |	'(' expr ')'        # Parenthesis
     ;
 
+BOOL : 'true' | 'false' ;
 STRING : '"' .*? '"' ;
 TYPE : 'int' | 'bool' | 'string' ;
 ID : [a-zA-Z]+ ;
 NEWLINE : [ \t\r\n]+ -> skip;
-//NEWLINE : [\t\r\n]+;
-//NEWLINE :'\r'? '\n' ;
 INT     : [0-9]+;
 
 

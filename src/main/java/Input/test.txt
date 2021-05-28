@@ -1,5 +1,8 @@
-5*2
 int a=2
+int d=5
+a*d+a^d
 string b="aici"
+bool c=false
 a
 b
+c
