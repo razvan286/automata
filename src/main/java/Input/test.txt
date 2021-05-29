@@ -3,6 +3,9 @@ int d=5
 a*d+a^d
 string b="aici"
 string k="not"
+b+k
+a+d
+10+5
 bool c=false
 a
 b

@@ -78,17 +78,22 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     @Override
     public void exitAdd(ArithmeticParser.AddContext ctx)
     {
+        Variable variable = new Variable();
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
 
         String op = ctx.getChild(1).getText();
-        int result;
-        if (op.equals("+"))
-            result = lV.getVarInt() + rV.getVarInt();
-        else
-            result = lV.getVarInt() - rV.getVarInt();
+        String result;
+        if (op.equals("+")) {
+            result = variable.concatVariables(lV, rV);
+        }
+        else{
+            Integer dif = lV.getVarInt() - rV.getVarInt();
+            result = dif.toString();
+        }
+
         Variable res = new Variable();
-        res.setVarInt(result);
+        res.setVarString(result);
         stackVar.push(res);
     }
 

@@ -32,7 +32,8 @@ public class Variable {
             String x2 = z.getVarString().substring(1, z.getVarString().length() - 1);
             return x1 + x2;
         }
-        return v.getVarInt() + z.getVarInt().toString();
+        Integer sum = v.getVarInt() + z.getVarInt();
+        return sum.toString();
     }
     public String printCon(){
         if(this.varString != null){
