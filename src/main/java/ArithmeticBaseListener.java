@@ -69,7 +69,7 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAdd(ArithmeticParser.AddContext ctx) { }
+	@Override public void exitAdd(ArithmeticParser.AddContext ctx) throws Exception { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -63,7 +63,7 @@ public interface ArithmeticListener extends ParseTreeListener {
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitAdd(ArithmeticParser.AddContext ctx);
+	void exitAdd(ArithmeticParser.AddContext ctx) throws Exception;
 	/**
 	 * Enter a parse tree produced by the {@code Parenthesis}
 	 * labeled alternative in {@link ArithmeticParser#expr}.

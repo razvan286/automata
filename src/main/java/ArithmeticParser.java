@@ -280,7 +280,13 @@ public class ArithmeticParser extends Parser {
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ArithmeticListener ) ((ArithmeticListener)listener).exitAdd(this);
+			if ( listener instanceof ArithmeticListener ) {
+				try {
+					((ArithmeticListener)listener).exitAdd(this);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 	public static class ParenthesisContext extends ExprContext {
