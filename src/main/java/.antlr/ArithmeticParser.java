@@ -1,4 +1,4 @@
-// Generated from Arithmetic.g4 by ANTLR 4.9
+// Generated from d:\Programming\Semester 4\Automata\automata\src\main\java\Arithmetic.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ArithmeticParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.9", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -104,11 +104,6 @@ public class ArithmeticParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_prog; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitProg(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ProgContext prog() throws RecognitionException {
@@ -157,11 +152,6 @@ public class ArithmeticParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stat; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitStat(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final StatContext stat() throws RecognitionException {
@@ -221,11 +211,6 @@ public class ArithmeticParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assign; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitAssign(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AssignContext assign() throws RecognitionException {
@@ -274,22 +259,12 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public AndExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitAndExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class FactExprContext extends ExprContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public FactExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitFactExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class ComparisonExprContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -299,11 +274,6 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public ComparisonExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitComparisonExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class PowExprContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -313,11 +283,6 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public PowExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitPowExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class MultExprContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -327,11 +292,6 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public MultExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitMultExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class AddExprContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -341,22 +301,12 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public AddExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitAddExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class AtomExprContext extends ExprContext {
 		public AtomContext atom() {
 			return getRuleContext(AtomContext.class,0);
 		}
 		public AtomExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitAtomExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class OrExprContext extends ExprContext {
 		public List<ExprContext> expr() {
@@ -366,11 +316,6 @@ public class ArithmeticParser extends Parser {
 			return getRuleContext(ExprContext.class,i);
 		}
 		public OrExprContext(ExprContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitOrExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final ExprContext expr() throws RecognitionException {
@@ -549,49 +494,24 @@ public class ArithmeticParser extends Parser {
 	public static class StringAtomContext extends AtomContext {
 		public TerminalNode STRING() { return getToken(ArithmeticParser.STRING, 0); }
 		public StringAtomContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitStringAtom(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class ParExprContext extends AtomContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public ParExprContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitParExpr(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class BoolAtomContext extends AtomContext {
 		public TerminalNode BOOL() { return getToken(ArithmeticParser.BOOL, 0); }
 		public BoolAtomContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitBoolAtom(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class IntAtomContext extends AtomContext {
 		public TerminalNode INT() { return getToken(ArithmeticParser.INT, 0); }
 		public IntAtomContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitIntAtom(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 	public static class IdAtomContext extends AtomContext {
 		public TerminalNode ID() { return getToken(ArithmeticParser.ID, 0); }
 		public IdAtomContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ArithmeticVisitor ) return ((ArithmeticVisitor<? extends T>)visitor).visitIdAtom(this);
-			else return visitor.visitChildren(this);
-		}
 	}
 
 	public final AtomContext atom() throws RecognitionException {

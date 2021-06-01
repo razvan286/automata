@@ -1,4 +1,4 @@
-// Generated from Arithmetic.g4 by ANTLR 4.9.2
+// Generated from Arithmetic.g4 by ANTLR 4.9
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -27,145 +27,193 @@ public class ArithmeticBaseListener implements ArithmeticListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPrint(ArithmeticParser.PrintContext ctx) { }
+	@Override public void enterStat(ArithmeticParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPrint(ArithmeticParser.PrintContext ctx) { }
+	@Override public void exitStat(ArithmeticParser.StatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar(ArithmeticParser.VarContext ctx) { }
+	@Override public void enterAssign(ArithmeticParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVar(ArithmeticParser.VarContext ctx) { }
+	@Override public void exitAssign(ArithmeticParser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNL(ArithmeticParser.NLContext ctx) { }
+	@Override public void enterAndExpr(ArithmeticParser.AndExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNL(ArithmeticParser.NLContext ctx) { }
+	@Override public void exitAndExpr(ArithmeticParser.AndExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAdd(ArithmeticParser.AddContext ctx) { }
+	@Override public void enterFactExpr(ArithmeticParser.FactExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAdd(ArithmeticParser.AddContext ctx) throws Exception { }
+	@Override public void exitFactExpr(ArithmeticParser.FactExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParenthesis(ArithmeticParser.ParenthesisContext ctx) { }
+	@Override public void enterComparisonExpr(ArithmeticParser.ComparisonExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParenthesis(ArithmeticParser.ParenthesisContext ctx) { }
+	@Override public void exitComparisonExpr(ArithmeticParser.ComparisonExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMult(ArithmeticParser.MultContext ctx) { }
+	@Override public void enterPowExpr(ArithmeticParser.PowExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMult(ArithmeticParser.MultContext ctx) { }
+	@Override public void exitPowExpr(ArithmeticParser.PowExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterPow(ArithmeticParser.PowContext ctx) { }
+	@Override public void enterMultExpr(ArithmeticParser.MultExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitPow(ArithmeticParser.PowContext ctx) { }
+	@Override public void exitMultExpr(ArithmeticParser.MultExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterString(ArithmeticParser.StringContext ctx) { }
+	@Override public void enterAddExpr(ArithmeticParser.AddExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitString(ArithmeticParser.StringContext ctx) { }
+	@Override public void exitAddExpr(ArithmeticParser.AddExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterID(ArithmeticParser.IDContext ctx) { }
+	@Override public void enterNotExpr(ArithmeticParser.NotExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitID(ArithmeticParser.IDContext ctx) { }
+	@Override public void exitNotExpr(ArithmeticParser.NotExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolean(ArithmeticParser.BooleanContext ctx) { }
+	@Override public void enterAtomExpr(ArithmeticParser.AtomExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolean(ArithmeticParser.BooleanContext ctx) { }
+	@Override public void exitAtomExpr(ArithmeticParser.AtomExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFact(ArithmeticParser.FactContext ctx) { }
+	@Override public void enterOrExpr(ArithmeticParser.OrExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFact(ArithmeticParser.FactContext ctx) { }
+	@Override public void exitOrExpr(ArithmeticParser.OrExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInt(ArithmeticParser.IntContext ctx) { }
+	@Override public void enterParExpr(ArithmeticParser.ParExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInt(ArithmeticParser.IntContext ctx) { }
+	@Override public void exitParExpr(ArithmeticParser.ParExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIntAtom(ArithmeticParser.IntAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntAtom(ArithmeticParser.IntAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolAtom(ArithmeticParser.BoolAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolAtom(ArithmeticParser.BoolAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIdAtom(ArithmeticParser.IdAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdAtom(ArithmeticParser.IdAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterStringAtom(ArithmeticParser.StringAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStringAtom(ArithmeticParser.StringAtomContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

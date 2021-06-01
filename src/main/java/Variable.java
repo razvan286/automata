@@ -41,7 +41,8 @@ public class Variable {
     public String getVarString() {
         return varString;
     }
-    public String concatVariables(Variable v, Variable z) throws Exception {
+
+    public void concatVariables(Variable v, Variable z) throws Exception {
         TYPE vType = v.getVarType();
         TYPE zType = z.getVarType();
         if (vType != zType){
@@ -50,10 +51,11 @@ public class Variable {
         if(v.getVarString() != null && z.getVarString() != null){
             String x1 = v.getVarString().substring(1, v.getVarString().length() - 1);
             String x2 = z.getVarString().substring(1, z.getVarString().length() - 1);
-            return x1 + x2;
+            String result = x1 + x2;
+            this.varString = result;
         }
         Integer sum = v.getVarInt() + z.getVarInt();
-        return sum.toString();
+        this.varInt = sum;
     }
     public String printCon(){
         if(this.varString != null){

@@ -43,12 +43,14 @@ public class Main {
         ArithmeticParser parser = new ArithmeticParser(tokens);  //parse token
 
         ParseTree tree = parser.prog();
-        ParseTreeWalker walker = new ParseTreeWalker();
-        AntlrArithmeticListener listener = new AntlrArithmeticListener();
-        MyListener extractor = new MyListener();
+//        ParseTreeWalker walker = new ParseTreeWalker();
+//        AntlrArithmeticListener listener = new AntlrArithmeticListener();
+//        MyListener extractor = new MyListener();
+        AntlrArithmeticVisitor visitor = new AntlrArithmeticVisitor();
 
-        ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
+//        ParseTreeWalker.DEFAULT.walk(listener, tree);  //initiate walk of tree with listener in use of default walker
 //        walker.walk(listener, tree);
+        visitor.visit(tree);
 
 
 //    }

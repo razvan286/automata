@@ -7,18 +7,19 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     private Stack<Variable> stackVar = new Stack<>();
     private Map<String, Variable> memoryVar = new HashMap<>();
 
-    @Override public void exitID(ArithmeticParser.IDContext ctx)
+    @Override public void exitAssignExpr(ArithmeticParser.AssignExprContext ctx)
     {
-        Variable value = memoryVar.get(ctx.ID().getText());
+//        Variable value = memoryVar.get(ctx.ID().getText());
+        Variable value = memoryVar.get(ctx.assign().getText());
         stackVar.push(value);
     }
-    @Override public void exitString(ArithmeticParser.StringContext ctx)
+    @Override public void exitStringAtom(ArithmeticParser.StringAtomContext ctx)
     {
         Variable iV = new Variable();
         iV.setVarString(ctx.STRING().getText());
         stackVar.push(iV);
     }
-    @Override public void exitBoolean(ArithmeticParser.BooleanContext ctx)
+    @Override public void exitBoolAtom(ArithmeticParser.BoolAtomContext ctx)
     {
         Variable iV = new Variable();
         iV.setVarBool(Boolean.parseBoolean(ctx.BOOL().getText()));
@@ -40,7 +41,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     }
 
     @Override
-    public void exitPow(ArithmeticParser.PowContext ctx)
+    public void exitPowExpr(ArithmeticParser.PowExprContext ctx)
     {
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
@@ -51,7 +52,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     }
 
     @Override
-    public void exitInt(ArithmeticParser.IntContext ctx)
+    public void exitIntAtom(ArithmeticParser.IntAtomContext ctx)
     {
         Variable iV = new Variable();
         iV.setVarInt(Integer.parseInt(ctx.INT().getText()));
@@ -59,7 +60,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     }
 
     @Override
-    public void exitMult(ArithmeticParser.MultContext ctx)
+    public void exitMultExpr(ArithmeticParser.MultExprContext ctx)
     {
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
@@ -76,7 +77,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     }
 
     @Override
-    public void exitAdd(ArithmeticParser.AddContext ctx){
+    public void exitAddExpr(ArithmeticParser.AddExprContext ctx){
         Variable variable = new Variable();
         Variable rV = stackVar.pop();
         Variable lV = stackVar.pop();
@@ -102,7 +103,7 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     }
 
     @Override
-    public void exitFact(ArithmeticParser.FactContext ctx)
+    public void exitFactExpr(ArithmeticParser.FactExprContext ctx)
     {
         Variable numberV = stackVar.pop();
 
