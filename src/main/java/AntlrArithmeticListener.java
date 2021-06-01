@@ -7,10 +7,10 @@ public class AntlrArithmeticListener extends ArithmeticBaseListener{
     private Stack<Variable> stackVar = new Stack<>();
     private Map<String, Variable> memoryVar = new HashMap<>();
 
-    @Override public void exitAssignExpr(ArithmeticParser.AssignExprContext ctx)
+    @Override public void exitAssign(ArithmeticParser.AssignContext ctx)
     {
 //        Variable value = memoryVar.get(ctx.ID().getText());
-        Variable value = memoryVar.get(ctx.assign().getText());
+        Variable value = memoryVar.get(ctx.expr().getText());
         stackVar.push(value);
     }
     @Override public void exitStringAtom(ArithmeticParser.StringAtomContext ctx)
