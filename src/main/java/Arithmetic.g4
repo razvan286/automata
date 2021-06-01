@@ -1,8 +1,18 @@
 grammar Arithmetic;
 prog: stat+;
 
-stat: expr | assign | NEWLINE;
+stat: print | assign | if_stat | NEWLINE;
 
+if_stat:
+	'if' condition_block ('else if' condition_block)* (
+		'else' stat_block
+	)?;
+
+condition_block: expr stat_block;
+
+stat_block: '{' stat* '}' | stat;
+
+print: 'print' '(' expr ')';
 assign: TYPE ID '=' expr;
 
 expr:
@@ -13,14 +23,14 @@ expr:
 	| expr ('<=' | '>=' | '<' | '>' | '==' | '!=') expr	# ComparisonExpr
 	| expr '&&' expr									# AndExpr
 	| expr '||' expr									# OrExpr
+	| '(' expr ')'										# ParExpr
 	| atom												# AtomExpr;
 
 atom:
-	'(' expr ')'	# ParExpr
-	| INT			# IntAtom
-	| BOOL			# BoolAtom
-	| ID			# IdAtom
-	| STRING		# StringAtom;
+	INT			# IntAtom
+	| BOOL		# BoolAtom
+	| ID		# IdAtom
+	| STRING	# StringAtom;
 
 BOOL: 'true' | 'false';
 STRING: '"' .*? '"';

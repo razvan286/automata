@@ -1,12 +1,1 @@
-int a=2
-int b="abc"
-a+b
-int c=2
-c*a
-string d="here"
-string e="not"
-bool z=false
-bool i=true
-d+e
-z
-i
+if(2==2){print(4)}

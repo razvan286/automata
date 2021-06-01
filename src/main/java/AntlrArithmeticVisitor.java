@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
@@ -13,65 +14,78 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         return memory.put(id, value);
     }
 
+    public Variable visitPrint(ArithmeticParser.PrintContext ctx) {
+        Variable var = this.visit(ctx.expr());
+        TYPE varType = var.getVarType();
+        switch (varType) {
+            case INT:
+                System.out.println(var.getVarInt());
+                return var;
+            case STRING:
+                System.out.println(var.getVarString());
+                return var;
+            case BOOL:
+                System.out.println(var.getVarBool());
+                return var;
+        }
+        return var;
+    }
+
     //Retrieve value of variable
     @Override
     public Variable visitIdAtom(ArithmeticParser.IdAtomContext ctx) {
         String id = ctx.getText();
         Variable value = memory.get(id);
-        if(value == null) {
+        if (value == null) {
             throw new RuntimeException("no such variable: " + id);
         }
         return value;
     }
 
     public Variable visitIntAtom(ArithmeticParser.IntAtomContext ctx) {
-        Variable number = null;
+        Variable number = new Variable();
         number.setVarInt(Integer.parseInt(ctx.getText()));
         return number;
     }
 
     @Override
     public Variable visitStringAtom(ArithmeticParser.StringAtomContext ctx) {
-        Variable word = null;
+        Variable word = new Variable();
         word.setVarString(ctx.getText());
         return word;
     }
 
     @Override
     public Variable visitBoolAtom(ArithmeticParser.BoolAtomContext ctx) {
-        Variable bool = null;
+        Variable bool = new Variable();
         String text = ctx.getText();
         Boolean output = false;
-        if (text == "true")
-        {
+        if (text == "true") {
             output = true;
         }
         bool.setVarBool(output);
         return bool;
     }
 
-    public Variable visitPowExpr(ArithmeticParser.PowExprContext ctx)
-    {
+    public Variable visitPowExpr(ArithmeticParser.PowExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
         Integer power = (int) Math.pow(left.getVarInt(), right.getVarInt());
-        Variable result = null;
+        Variable result = new Variable();
         result.setVarInt(power);
         return result;
     }
 
-    public Variable visitMultExpr(ArithmeticParser.MultExprContext ctx)
-    {
+    public Variable visitMultExpr(ArithmeticParser.MultExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
 
         String op = ctx.getChild(1).getText();
 
         int number = 0;
-        Variable result = null;
+        Variable result = new Variable();
 
-        switch(op)
-        {
+        switch (op) {
             case "*":
                 number = left.getVarInt() * right.getVarInt();
                 break;
@@ -83,20 +97,18 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         return result;
     }
 
-    public Variable visitAddExpr(ArithmeticParser.AddExprContext ctx)
-    {
+    public Variable visitAddExpr(ArithmeticParser.AddExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
         Variable result = new Variable();
 
         String op = ctx.getChild(1).getText();
 
-        switch(op){
+        switch (op) {
             case "+":
                 try {
                     result.concatVariables(left, right);
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
                 break;
@@ -108,8 +120,7 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         return result;
     }
 
-    public Variable visitFactExpr(ArithmeticParser.FactExprContext ctx)
-    {
+    public Variable visitFactExpr(ArithmeticParser.FactExprContext ctx) {
         Variable number = this.visit(ctx.expr());
         Integer numberAsInt = number.getVarInt();
         Integer resultAsInt = fact(numberAsInt);
@@ -117,36 +128,29 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         return number;
     }
 
-    public Variable visitComparisonExpr(ArithmeticParser.ComparisonExprContext ctx)
-    {
+    public Variable visitComparisonExpr(ArithmeticParser.ComparisonExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
 
         Integer leftAsInt = left.getVarInt();
         Integer rightAsInt = right.getVarInt();
 
-        Variable result = null;
+        Variable result = new Variable();
 
         String op = ctx.getChild(1).getText();
 
-        switch(op) {
+        switch (op) {
             case ">":
-                if (leftAsInt > rightAsInt)
-                {
+                if (leftAsInt > rightAsInt) {
                     result.setVarBool(true);
-                }
-                else
-                {
+                } else {
                     result.setVarBool(false);
                 }
                 break;
             case "<":
-                if (leftAsInt < rightAsInt)
-                {
+                if (leftAsInt < rightAsInt) {
                     result.setVarBool(true);
-                }
-                else
-                {
+                } else {
                     result.setVarBool(false);
                 }
                 break;
@@ -158,32 +162,23 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
                 }
                 break;
             case ">=":
-                if (leftAsInt >= rightAsInt)
-                {
+                if (leftAsInt >= rightAsInt) {
                     result.setVarBool(true);
-                }
-                else
-                {
+                } else {
                     result.setVarBool(false);
                 }
                 break;
             case "==":
-                if (leftAsInt == rightAsInt)
-                {
+                if (leftAsInt == rightAsInt) {
                     result.setVarBool(true);
-                }
-                else
-                {
+                } else {
                     result.setVarBool(false);
                 }
                 break;
             case "!=":
-                if (leftAsInt != rightAsInt)
-                {
+                if (leftAsInt != rightAsInt) {
                     result.setVarBool(true);
-                }
-                else
-                {
+                } else {
                     result.setVarBool(false);
                 }
                 break;
@@ -192,8 +187,7 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
 
     }
 
-    public Variable visitAndExpr(ArithmeticParser.AndExprContext ctx)
-    {
+    public Variable visitAndExpr(ArithmeticParser.AndExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
 
@@ -201,14 +195,13 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         Boolean rightAsBool = right.getVarBool();
 
         Boolean resultAsBool = leftAsBool && rightAsBool;
-        Variable result = null;
+        Variable result = new Variable();
         result.setVarBool(resultAsBool);
         return result;
 
     }
 
-    public Variable visitOrExpr(ArithmeticParser.OrExprContext ctx)
-    {
+    public Variable visitOrExpr(ArithmeticParser.OrExprContext ctx) {
         Variable left = this.visit(ctx.expr(0));
         Variable right = this.visit(ctx.expr(1));
 
@@ -216,52 +209,45 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         Boolean rightAsBool = right.getVarBool();
 
         Boolean resultAsBool = leftAsBool || rightAsBool;
-        Variable result = null;
+        Variable result = new Variable();
         result.setVarBool(resultAsBool);
         return result;
 
     }
 
 
-
-    private int fact(int number)
-    {
-        if (number == 0)
-        {
+    private int fact(int number) {
+        if (number == 0) {
             return 1;
-        }
-        else
-        {
-            return number * fact(number-1);
+        } else {
+            return number * fact(number - 1);
         }
     }
 
-    /*    public void exitAddExpr(ArithmeticParser.AddExprContext ctx){
-        Variable variable = new Variable();
-        Variable rV = stackVar.pop();
-        Variable lV = stackVar.pop();
+    public Variable visitIf_stat(ArithmeticParser.If_statContext ctx) {
+        List<ArithmeticParser.Condition_blockContext> conditions = ctx.condition_block();
 
-        String op = ctx.getChild(1).getText();
-        String result = new String();
-        if (op.equals("+")) {
-            try{
-                result = variable.concatVariables(lV, rV);
-            }catch(Exception e){
-                System.out.println(e);
+        boolean evaluatedBlock = false;
+
+        for (ArithmeticParser.Condition_blockContext condition : conditions) {
+
+            Variable evaluated = this.visit(condition.expr());
+
+            if (evaluated.getVarBool()) {
+                evaluatedBlock = true;
+                // evaluate this block whose expr==true
+                this.visit(condition.stat_block());
+                break;
             }
-
-        }
-        else{
-            Integer dif = lV.getVarInt() - rV.getVarInt();
-            result = dif.toString();
         }
 
-        Variable res = new Variable();
-        res.setVarString(result);
-        stackVar.push(res);
-    }*/
-
-
+        if (!evaluatedBlock && ctx.stat_block() != null) {
+            // evaluate the else-stat_block (if present == not null)
+            this.visit(ctx.stat_block());
+        }
+        Variable throwaway = new Variable();
+        return throwaway;
+    }
 
 
 }

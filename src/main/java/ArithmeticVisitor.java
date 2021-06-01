@@ -22,6 +22,30 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStat(ArithmeticParser.StatContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#if_stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_stat(ArithmeticParser.If_statContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#condition_block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition_block(ArithmeticParser.Condition_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#stat_block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStat_block(ArithmeticParser.Stat_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#print}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrint(ArithmeticParser.PrintContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#assign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -48,6 +72,13 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComparisonExpr(ArithmeticParser.ComparisonExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ParExpr}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParExpr(ArithmeticParser.ParExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code PowExpr}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
@@ -83,13 +114,6 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOrExpr(ArithmeticParser.OrExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ParExpr}
-	 * labeled alternative in {@link ArithmeticParser#atom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParExpr(ArithmeticParser.ParExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code IntAtom}
 	 * labeled alternative in {@link ArithmeticParser#atom}.
