@@ -27,12 +27,13 @@ expr:
 	| atom												# AtomExpr;
 
 atom:
-	INT			# IntAtom
-	| BOOL		# BoolAtom
-	| ID		# IdAtom
-	| STRING	# StringAtom;
+	INT					# IntAtom
+	| (TRUE | FALSE)	# BoolAtom
+	| ID				# IdAtom
+	| STRING			# StringAtom;
 
-BOOL: 'true' | 'false';
+TRUE: 'true';
+FALSE: 'false';
 STRING: '"' .*? '"';
 TYPE: 'int' | 'bool' | 'string';
 ID: [a-zA-Z]+;

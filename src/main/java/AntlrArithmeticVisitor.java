@@ -60,7 +60,7 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         Variable bool = new Variable();
         String text = ctx.getText();
         Boolean output = false;
-        if (text == "true") {
+        if (text.equals("true") ) {
             output = true;
         }
         bool.setVarBool(output);
@@ -213,6 +213,12 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         result.setVarBool(resultAsBool);
         return result;
 
+    }
+
+    // expr overrides
+    @Override
+    public Variable visitParExpr(ArithmeticParser.ParExprContext ctx) {
+        return this.visit(ctx.expr());
     }
 
 

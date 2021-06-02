@@ -1,1 +1,18 @@
-if(2==2){print(4)}
+int a = 5
+int b = 4
+if (a - b == 1)
+{
+print("Diff = 1")
+}
+if (a == 5)
+{
+print("a is equal to 5")
+}
+if (b == 10)
+{
+print("ten")
+}
+else
+{
+print("four")
+}
