@@ -1,4 +1,4 @@
-// Generated from Arithmetic.g4 by ANTLR 4.9
+// Generated from Arithmetic.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -39,6 +39,12 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStat_block(ArithmeticParser.Stat_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#while_stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile_stat(ArithmeticParser.While_statContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#print}.
 	 * @param ctx the parse tree

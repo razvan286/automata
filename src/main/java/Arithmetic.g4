@@ -1,7 +1,7 @@
 grammar Arithmetic;
 prog: stat+;
 
-stat: print | assign | if_stat | NEWLINE;
+stat: print | assign | if_stat | while_stat | NEWLINE;
 
 if_stat:
 	'if' condition_block ('else if' condition_block)* (
@@ -12,8 +12,10 @@ condition_block: expr stat_block;
 
 stat_block: '{' stat* '}' | stat;
 
+while_stat: 'while' expr stat_block;
+
 print: 'print' '(' expr ')';
-assign: TYPE ID '=' expr;
+assign: TYPE ID '=' expr | ID '=' expr;
 
 expr:
 	expr '^' expr										# PowExpr

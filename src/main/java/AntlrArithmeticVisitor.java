@@ -255,5 +255,20 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         return throwaway;
     }
 
+    public Variable visitWhile_stat(ArithmeticParser.While_statContext ctx){
+        Variable value = this.visit(ctx.expr());
+
+        while(value.getVarBool()){
+
+            //evaluate block
+            this.visit(ctx.stat_block());
+
+            //evaluate expression
+            value = this.visit(ctx.expr());
+        }
+        Variable throwaway = new Variable();
+        return throwaway;
+    }
+
 
 }
