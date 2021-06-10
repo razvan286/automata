@@ -1,0 +1,13 @@
+int a = 5
+int b = 10
+
+int add(a,b)
+{
+  print(a+b)
+  return a+b
+}
+
+if (a == 5)
+{
+  add(a,b)
+}

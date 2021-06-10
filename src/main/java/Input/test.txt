@@ -1,13 +1,9 @@
 int a = 5
 int b = 10
 
-int add(a,b)
+int add(b)
 {
-  print(a+b)
-  return a+b
+  return b + 20
 }
 
-if (a == 5)
-{
-  add(a,b)
-}
+print( add(b) )

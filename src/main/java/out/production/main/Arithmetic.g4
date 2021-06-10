@@ -30,8 +30,7 @@ assign: TYPE ID '=' expr | ID '=' expr;
 return_: 'return' expr;
 
 expr:
-	func_call											# FuncCall
-	| expr '^' expr										# PowExpr
+	expr '^' expr										# PowExpr
 	| expr ('*' | '/') expr								# MultExpr
 	| expr ('+' | '-') expr								# AddExpr
 	| expr '!'											# FactExpr

@@ -1,4 +1,4 @@
-// Generated from Arithmetic.g4 by ANTLR 4.9.2
+// Generated from .\Arithmetic.g4 by ANTLR 4.9
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -22,11 +22,35 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStat(ArithmeticParser.StatContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#func_def}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_def(ArithmeticParser.Func_defContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#func_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_call(ArithmeticParser.Func_callContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#arguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArguments(ArithmeticParser.ArgumentsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#if_stat}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitIf_stat(ArithmeticParser.If_statContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#while_stat}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhile_stat(ArithmeticParser.While_statContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#condition_block}.
 	 * @param ctx the parse tree
@@ -40,12 +64,6 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStat_block(ArithmeticParser.Stat_blockContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ArithmeticParser#while_stat}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWhile_stat(ArithmeticParser.While_statContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#print}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -58,12 +76,25 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAssign(ArithmeticParser.AssignContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ArithmeticParser#return_}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_(ArithmeticParser.Return_Context ctx);
+	/**
 	 * Visit a parse tree produced by the {@code AndExpr}
 	 * labeled alternative in {@link ArithmeticParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitAndExpr(ArithmeticParser.AndExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code FuncCall}
+	 * labeled alternative in {@link ArithmeticParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncCall(ArithmeticParser.FuncCallContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code FactExpr}
 	 * labeled alternative in {@link ArithmeticParser#expr}.

@@ -1,10 +1,13 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
 
     private Map<String, Variable> memory = new HashMap<String, Variable>();
+    private Map<String, ArithmeticParser.Stat_blockContext> funcDefs = new HashMap<String, ArithmeticParser.Stat_blockContext>();
+    private Stack<Variable> returnStack = new Stack<>();
 
     //string name = "George"
     @Override
@@ -269,6 +272,34 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
         Variable throwaway = new Variable();
         return throwaway;
     }
+
+    public Variable visitFunc_def(ArithmeticParser.Func_defContext ctx)
+    {
+        funcDefs.put(ctx.ID().getText(), ctx.stat_block());
+        Variable throwaway = new Variable();
+        return throwaway;
+
+    }
+
+    public Variable visitFunc_call(ArithmeticParser.Func_callContext ctx)
+    {
+        ArithmeticParser.Stat_blockContext funcBody = funcDefs.get(ctx.ID().getText());
+        List<ArithmeticParser.StatContext> statements = funcBody.stat();
+        Variable statementResult = new Variable();
+        for (ArithmeticParser.StatContext statement : statements)
+        {
+            statementResult = this.visit(statement);
+        }
+        return statementResult;
+    }
+
+    public Variable visitReturn_(ArithmeticParser.Return_Context ctx)
+    {
+        Variable value = this.visit(ctx.expr());
+        returnStack.push(value);
+        return value;
+    }
+
 
 
 }
