@@ -1,30 +1,13 @@
 int a = 5
-int b = 4
-if (a - b == 1)
+int b = 10
+
+int add(a,b)
 {
-print("Diff = 1")
+  print(a+b)
+  return a+b
 }
+
 if (a == 5)
 {
-print("a is equal to 5")
-}
-if (b == 10)
-{
-print("ten")
-}
-else
-{
-print("four")
-}
-
-int n = 3
-while n > 0 {
-  if (n == 3) {
-    print("n = 3")
-  }
-  else {
-    print("n < 3")
-  }
-
-  n = n - 1;
+  add(a,b)
 }
