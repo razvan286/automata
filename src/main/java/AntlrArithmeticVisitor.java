@@ -5,9 +5,8 @@ import java.util.Stack;
 
 public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
 
-    private Map<String, Variable> memory = new HashMap<String, Variable>();
-    private Map<String, ArithmeticParser.Stat_blockContext> funcDefs = new HashMap<String, ArithmeticParser.Stat_blockContext>();
-    private Stack<Variable> returnStack = new Stack<>();
+    private Map<String, Variable> memory = new HashMap<String, Variable>(); //Memory for variables
+    private Map<String, ArithmeticParser.Func_defContext> funcDefs = new HashMap<String, ArithmeticParser.Func_defContext>(); //Memory for function definitions
 
     //string name = "George"
     @Override
@@ -275,28 +274,39 @@ public class AntlrArithmeticVisitor extends ArithmeticBaseVisitor<Variable> {
 
     public Variable visitFunc_def(ArithmeticParser.Func_defContext ctx)
     {
-        funcDefs.put(ctx.ID().getText(), ctx.stat_block());
-        Variable throwaway = new Variable();
+        funcDefs.put(ctx.ID().getText(), ctx); // Add the function name as key in the function memory and the function details as the value
+        Variable throwaway = new Variable(); //Irrelevant variable since we always have to return from methods
         return throwaway;
 
     }
 
-    public Variable visitFunc_call(ArithmeticParser.Func_callContext ctx)
-    {
-        ArithmeticParser.Stat_blockContext funcBody = funcDefs.get(ctx.ID().getText());
-        List<ArithmeticParser.StatContext> statements = funcBody.stat();
-        Variable statementResult = new Variable();
-        for (ArithmeticParser.StatContext statement : statements)
+    public Variable visitFunc_call(ArithmeticParser.Func_callContext ctx) throws Exception {
+        ArithmeticParser.Func_defContext function = funcDefs.get(ctx.ID().getText()); //Get the function definition from the function memory
+        List<ArithmeticParser.StatContext> statements = function.stat_block().stat(); //Get the function statements from the function definition
+        if (function.arguments().getChildCount() != ctx.arguments().getChildCount()) //If number of call arguments does not match number of definition arguments
         {
-            statementResult = this.visit(statement);
+            throw new Exception("Number of call and definition arguments does not match"); //Throw exception
         }
-        return statementResult;
+        for (int i = 0; i < function.arguments().getChildCount(); i++) //Loop through all the arguments of the function definition
+        {
+            Variable var = this.visit(ctx.arguments().getChild(i)); //Get the value of the variable in the function call
+            memory.put(function.arguments().getChild(i).getText(), var); //Add the function definition argument as key and value of function call variable as value
+        }
+        Variable statementResult = new Variable();
+        for (ArithmeticParser.StatContext statement : statements) //Loop through all statements
+        {
+            statementResult = this.visit(statement); //Execute all statements
+        }
+        for (int i = 0; i < function.arguments().getChildCount(); i++)
+        {
+            memory.remove(function.arguments().getChild(i).getText()); //Delete all local variables
+        }
+        return statementResult; //function return statement
     }
 
     public Variable visitReturn_(ArithmeticParser.Return_Context ctx)
     {
         Variable value = this.visit(ctx.expr());
-        returnStack.push(value);
         return value;
     }
 

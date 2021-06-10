@@ -32,7 +32,7 @@ public interface ArithmeticVisitor<T> extends ParseTreeVisitor<T> {
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunc_call(ArithmeticParser.Func_callContext ctx);
+	T visitFunc_call(ArithmeticParser.Func_callContext ctx) throws Exception;
 	/**
 	 * Visit a parse tree produced by {@link ArithmeticParser#arguments}.
 	 * @param ctx the parse tree

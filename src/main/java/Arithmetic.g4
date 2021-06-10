@@ -13,7 +13,7 @@ stat:
 
 func_def: TYPE ID '(' arguments ')' stat_block;
 func_call: ID '(' arguments ')';
-arguments: expr ( ',' expr)*;
+arguments: expr? ( ',' expr)*;
 
 if_stat:
 	'if' condition_block ('else if' condition_block)* (

@@ -1,9 +1,18 @@
 int a = 5
 int b = 10
 
-int add(b)
+int add(firstNumber, secondNumber)
 {
-  return b + 20
+  print(firstNumber)
+  print(secondNumber)
+  print(firstNumber + secondNumber)
+  return firstNumber + secondNumber
 }
 
-print( add(b) )
+string random()
+{
+    print(a)
+}
+
+random()
+add(5, 15, 20)

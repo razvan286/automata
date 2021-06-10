@@ -37,7 +37,7 @@ public class ArithmeticBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunc_call(ArithmeticParser.Func_callContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunc_call(ArithmeticParser.Func_callContext ctx) throws Exception { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
