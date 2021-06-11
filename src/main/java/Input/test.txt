@@ -3,16 +3,22 @@ int b = 10
 
 int add(firstNumber, secondNumber)
 {
-  print(firstNumber)
-  print(secondNumber)
+  print("add function:")
   print(firstNumber + secondNumber)
   return firstNumber + secondNumber
 }
-
-string random()
-{
-    print(a)
+int check(x,d){
+    print("check function:")
+    if(x>d){
+        print("is greater")
+    }else if(x<d){
+        print("is smaller")
+    }else{
+        print("is equal")
+    }
 }
-
-random()
-add(5, 15, 20)
+int c = add(20, 3)
+add(a,b)
+check(c,23)
+check(c,7)
+check(c,35)
